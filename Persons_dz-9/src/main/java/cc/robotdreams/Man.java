@@ -68,7 +68,7 @@ public class Man extends Person {
         this.hasChildren = hasChildren;
     }
 
-    // Getter and Setter for pets
+    // Getter and Setter
     public List<String> getPets() {
         return pets;
     }

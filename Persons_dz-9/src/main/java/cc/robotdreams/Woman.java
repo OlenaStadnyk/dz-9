@@ -83,7 +83,7 @@ public class Woman extends Person {
         return info + " Occupation: " + occupation + ", hasChildren: " + hasChildren + ".";
     }
 
-    // Getter and Setter for age (including the field age inherited from the class Person)
+    // Getter and Setter for age (including the field age inherited from Person)
     public int getAge() {
         return age;
     }

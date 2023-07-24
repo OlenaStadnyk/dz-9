@@ -106,13 +106,13 @@ public class Main {
         printPersonDetails(annGreen);
         printPersonDetails(ashleyWilson);
 
-        // Встановлюємо партнерство між Matthew Grey та Jassica Clapton
+        // establish a partnership between Matthew Grey & Jassica Clapton
         matthewGrey.registerPartnership(jassicaClapton);
 
-        // Розриваємо партнерство між Yan Presly та Monica Cupper
+        // establish a partnership between Yan Presly & Monica Cupper
         yanPresly.deregisterPartnership(false);
 
-        // Встановлюємо партнерство між Mike Nikols та Ann Green
+        // establish a partnership between Mike Nikols & Ann Green
         mikeNikols.registerPartnership(annGreen);
 
         // Display partnerships

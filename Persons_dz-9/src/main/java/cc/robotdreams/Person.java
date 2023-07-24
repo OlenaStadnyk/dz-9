@@ -87,7 +87,7 @@ class Person {
         return age >= 18;
     }
 
-    // Setter method for hasRetirementAge
+    // Setter for hasRetirementAge
     public void setHasRetirementAge(boolean hasRetirementAge) {
         this.hasRetirementAge = hasRetirementAge;
     }
