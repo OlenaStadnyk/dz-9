@@ -6,24 +6,35 @@ import java.util.List;
 public class Woman extends Person {
     private String gender;
     private List<String> shoppingPreferences;
+    private List<String> pets;
     private String occupation;
     private boolean hasChildren;
-    private List<String> pets;
-    private String address;
+    private Person partner;
     private String previousLastName;
     protected String lastNameBeforeMarriage;
+    private String address;
 
     private static final int RETIREMENT_AGE_WOMAN = 60;
 
     public Woman(String firstName, String lastName, int age) {
         super(firstName, lastName, age);
-        this.previousLastName = previousLastName;
         this.gender = "woman";
         this.shoppingPreferences = new ArrayList<>();
+        this.pets = new ArrayList<>();
         this.occupation = "";
         this.hasChildren = false;
-        this.pets = new ArrayList<>();
-        this.address = "";
+        this.partner = null;
+        this.previousLastName = lastName;
+        this.lastNameBeforeMarriage = null;
+    }
+
+    public String getLastNameBeforeMarriage() {
+        return lastNameBeforeMarriage;
+    }
+
+    // Method to set the last name before marriage
+    public void setLastNameBeforeMarriage(String lastNameBeforeMarriage) {
+        this.lastNameBeforeMarriage = lastNameBeforeMarriage;
     }
 
     public String getFullName() {
@@ -37,12 +48,14 @@ public class Woman extends Person {
         this.lastName = man.lastName;
     }
 
+    // Method to deregister partnership and handle divorce
     public void deregisterPartnership(boolean revertLastName) {
         if (partner != null) {
             partner.partner = null;
             partner = null;
-            if (revertLastName) {
-                revertLastName();
+            if (revertLastName && lastNameBeforeMarriage != null) {
+                lastName = lastNameBeforeMarriage;
+                lastNameBeforeMarriage = null; // Reset the previous last name after reverting
             }
         }
     }

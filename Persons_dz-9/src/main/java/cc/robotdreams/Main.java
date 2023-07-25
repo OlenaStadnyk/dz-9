@@ -110,7 +110,7 @@ public class Main {
         matthewGrey.registerPartnership(jassicaClapton);
 
         // establish a partnership between Yan Presly & Monica Cupper
-        yanPresly.deregisterPartnership(false);
+        yanPresly.deregisterPartnership(true);
 
         // establish a partnership between Mike Nikols & Ann Green
         mikeNikols.registerPartnership(annGreen);
@@ -120,13 +120,25 @@ public class Main {
         System.out.println(jassicaClapton.getFullName() + " and " + matthewGrey.getFullName() + " are married.");
 
         // Display divorces
+        //System.out.println("\nDivorces:");
+        //System.out.println(monicaCupper.getFullName() + " and " + yanPresly.getFullName() + " got divorced. " +
+        // monicaCupper.getFullName() + " reverted back to her previous last name " + monicaCupper.getPreviousLastName());
+        //}
+
+        // Display divorces
         System.out.println("\nDivorces:");
-        System.out.println(monicaCupper.getFullName() + " and " + yanPresly.getFullName() + " got divorced. " +
-                monicaCupper.getFullName() + " reverted back to her previous last name: " + monicaCupper.getPreviousLastName());
+        String divorceInfo = monicaCupper.getFullName() + " and " + yanPresly.getFullName() + " got divorced. ";
+        String previousLastName = monicaCupper.getLastNameBeforeMarriage();
+        if (previousLastName != null) {
+            System.out.println(divorceInfo + monicaCupper.getFullName() + " reverted back to her previous last name: " + previousLastName);
+        } else {
+            System.out.println(divorceInfo + monicaCupper.getFullName() + " reverted back to her previous last name: " + monicaCupper.getLastName());
+        }
     }
 
-    // Method to print details of a person
-        private static void printPersonDetails(Person person) {
+
+        // Method to print details of a person
+    private static void printPersonDetails(Person person) {
         String hasRetirementAge = person.hasRetirementAge ? "true" : "false";
         String partnerDetails = person.getPartner() != null ? ", Partner: " + person.getPartner().getFullName() : "";
         System.out.println(person.getFullName() + ", Age: " + person.getAge() + ", hasRetirementAge: " + hasRetirementAge + partnerDetails);
@@ -141,11 +153,18 @@ public class Main {
         } else if (person instanceof Woman) {
             Woman woman = (Woman) person;
             System.out.println("  ShoppingPreference: " + woman.getShoppingPreferences());
-            if (woman.getPartner() != null) {
-                Man man = (Man) woman.getPartner();
-                System.out.println("  Married to: " + man.getFullName());
-                if (!woman.getLastName().equals(man.getLastName())) {
-                    System.out.println("  " + woman.getFirstName() + " takes " + man.getLastName() + " name.");
+            Person partner = woman.getPartner();
+            if (partner != null) {
+                System.out.println("  Married to: " + partner.getFullName());
+                if (!woman.getLastName().equals(partner.getLastName())) {
+                    System.out.println("  " + woman.getFirstName() + " took " + partner.getLastName() + "'s name.");
+                }
+            } else {
+                String lastNameBeforeMarriage = woman.getLastNameBeforeMarriage();
+                if (lastNameBeforeMarriage == null) {
+                    System.out.println("  Current Last Name: " + woman.getLastName());
+                } else {
+                    System.out.println("  Divorced, Current Last Name: " + lastNameBeforeMarriage);
                 }
             }
         }
@@ -155,4 +174,5 @@ public class Main {
         System.out.println("  hasChildren: " + person.hasChildren());
         System.out.println();
     }
+
 }

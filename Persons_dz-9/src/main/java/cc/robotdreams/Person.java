@@ -107,6 +107,7 @@ class Person {
         this.partner = partner;
     }
 
+// part for divorce
     public void deregisterPartnership(boolean b) {
         if (partner != null) {
             if (this instanceof Woman) {
